@@ -12,6 +12,7 @@ const Card = React.forwardRef<
       "rounded-lg border bg-card text-card-foreground shadow-sm",
       className
     )}
+    style={{ width: "300px" }}
     {...props}
   />
 ))

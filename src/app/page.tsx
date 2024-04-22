@@ -6,22 +6,46 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
+import ServiceCard from "@/components/serviceCard";
 
 
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <h1>Ambaari</h1>
-      <Card>
+
+      <div className=""><Card>
         <CardHeader>
-          <CardTitle>Card Title</CardTitle>
+          <CardTitle>Laundry</CardTitle>
           
         </CardHeader>
        
         <CardFooter>
-          <p>Card Footer</p>
+          <p>See menu</p>
         </CardFooter>
-      </Card>
+      </Card></div>
+
+      <div className=""><Card>
+        <CardHeader>
+          <CardTitle>Food</CardTitle>
+          
+        </CardHeader>
+       
+        <CardFooter>
+          <p>See menu</p>
+        </CardFooter>
+      </Card></div>
+
+      <div className=""><Card>
+        <CardHeader>
+          <CardTitle>Spa</CardTitle>
+          
+        </CardHeader>
+       
+        <CardFooter>
+          <p>See menu</p>
+        </CardFooter>
+      </Card></div>
 
     </main>
   );
