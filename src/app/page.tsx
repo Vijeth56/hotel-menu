@@ -5,7 +5,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import ServiceCard from "@/components/serviceCard";
 
 
 
@@ -26,9 +25,9 @@ export default function Home() {
 
     <div>
 <Navbar />
-<main className="flex min-h-screen flex-col items-center justify-between pl-24 pr-24 pb-24 pt-10">
 
-      <div className="lg:mt-2 sm:mt-0">
+<div className='flex flex-col items-center justify-between pl-24 pr-24 pb-24 pt-10'>
+      <div className="lg:mt-2 mt-9 shadow-md">
         <Card>
           <CardHeader>
             <CardTitle>Laundry</CardTitle>
@@ -40,7 +39,7 @@ export default function Home() {
         </Card>
       </div>
 
-      <div className="lg:mt-2 sm:mt-0">
+      <div className="lg:mt-2 mt-9 shadow-md">
         <Card>
           <CardHeader>
             <CardTitle>Food</CardTitle>
@@ -52,7 +51,7 @@ export default function Home() {
         </Card>
       </div>
 
-      <div className="lg:mt-2 sm:mt-0">
+      <div className="lg:mt-2 mt-9 shadow-md">
         <Card>
           <CardHeader>
             <CardTitle>Spa</CardTitle>
@@ -63,9 +62,8 @@ export default function Home() {
           </CardFooter>
         </Card>
       </div>
-    </main>
     </div>
 
-    
+    </div>
   );
 }
