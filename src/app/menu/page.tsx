@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 
 interface SearchParams {
   title: string;
@@ -26,7 +27,8 @@ function Page({ searchParams }: { searchParams: SearchParams }) {
     <div>
     {laundry && (
         <div className="overflow-hidden mx-auto max-w-full md:max-w-screen-sm">
-        <img src='/assets/RockRegencyLaundry.png' className="w-full h-auto" alt="Rock Regency Laundry"></img>
+        <img src='/assets/laundry/RockRegencyLaundry.png' className="w-full h-auto" alt="Rock Regency Laundry"></img>
+        <Image src={"https://utfs.io/f/18be80bd-7756-4400-8c6f-cc94cec07922-m6a75c.jpeg"} alt='Laundry menu' width="500" height="300"/>
       </div>
     )}
     {food && (
@@ -36,8 +38,8 @@ function Page({ searchParams }: { searchParams: SearchParams }) {
     )}
     {spa && (
         <div className="overflow-hidden mx-auto max-w-full md:max-w-screen-sm">
-        <img src='/assets/RockRegencySpa1.png' className="w-full h-auto" alt="Rock Regency Laundry"></img>
-        <img src='/assets/RockRegencySpa2.png' className="w-full h-auto" alt="Rock Regency Laundry"></img>
+        <img src='/assets/spa/RockRegencySpa1.png' className="w-full h-auto" alt="Rock Regency Laundry"></img>
+        <img src='/assets/spa/RockRegencySpa2.png' className="w-full h-auto" alt="Rock Regency Laundry"></img>
 
       </div>
     )}
