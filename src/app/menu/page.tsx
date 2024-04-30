@@ -1,52 +1,59 @@
-import React from 'react';
+"use client";
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
+
+interface MenuItem {
+  type: string;
+  url: string;
+}
 
 interface SearchParams {
   title: string;
 }
 
 function Page({ searchParams }: { searchParams: SearchParams }) {
-  const cardTitle = searchParams.title;
-  let laundry = false;
-  let food = false;
-  let spa = false;
+  const [menuItems, setMenuItems] = useState<MenuItem[]>([]);
+  const [loading, setLoading] = useState<boolean>(true); // Loading state
 
-  
-  if (cardTitle === "laundry") {
-    laundry = true;
-} else if (cardTitle === "food") {
-    food = true;
-    
-  } else if (cardTitle === "spa") {
-    spa = true;
-    
-  }
+  useEffect(() => {
+    fetchMenus().then((menus) => {
+      setMenuItems(menus);
+      setLoading(false); // Set loading to false when menu items are fetched
+    });
+  }, []);
 
+  const fetchMenus = async () => {
+    try {
+      const res = await fetch("http://localhost:5000/api/getMenu");
+      const menus = await res.json();
+      console.log(menus);
+      return menus;
+    } catch (error) {
+      console.error("Error fetching menus:", error);
+      return [];
+    }
+  };
+
+  const { title } = searchParams;
 
   return (
     <div>
-    {laundry && (
-        <div className="overflow-hidden mx-auto max-w-full md:max-w-screen-sm">
-        <img src='/assets/laundry/RockRegencyLaundry.png' className="w-full h-auto" alt="Rock Regency Laundry"></img>
-        <Image src={"https://utfs.io/f/18be80bd-7756-4400-8c6f-cc94cec07922-m6a75c.jpeg"} alt='Laundry menu' width="500" height="300"/>
-      </div>
-    )}
-    {food && (
-        <div className="overflow-hidden mx-auto max-w-full md:max-w-screen-sm">
-        <img src='/assets/RockRegencyFood.png' className="w-full h-auto" alt="Rock Regency Food"></img>
-      </div>
-    )}
-    {spa && (
-        <div className="overflow-hidden mx-auto max-w-full md:max-w-screen-sm">
-        <img src='/assets/spa/RockRegencySpa1.png' className="w-full h-auto" alt="Rock Regency Laundry"></img>
-        <img src='/assets/spa/RockRegencySpa2.png' className="w-full h-auto" alt="Rock Regency Laundry"></img>
-
-      </div>
-    )}
-
-
-</div>
-
+      {loading && (
+        <div className="flex items-center justify-center h-screen">
+          <div>Loading....</div>
+        </div>
+      )} 
+      {!loading &&
+        menuItems
+          .filter((menuItem) => menuItem.type === title)
+          .map((menuItem, index) => (
+            <div key={`${menuItem.type}-${index}`}>
+              <div className="overflow-hidden mx-auto max-w-full md:max-w-screen-sm">
+                <Image src={menuItem.url} alt={`${title} menu`} width={500} height={300} />
+              </div>
+            </div>
+          ))}
+    </div>
   );
 }
 
