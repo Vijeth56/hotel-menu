@@ -48,6 +48,7 @@ function Page() {
         endpoint="imageUploader"
         onClientUploadComplete={(res: any) => {
           // Do something with the response
+          res[0].customId = 123;
           console.log("Files: ", res);
           alert("Upload Completed");
         }}
