@@ -3,7 +3,7 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
-        hostname: "utfs.io",
+        hostname: "hotelbala-menu.s3.ap-southeast-2.amazonaws.com",
       },
     ],
   },

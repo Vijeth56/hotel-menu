@@ -1,22 +1,32 @@
-import * as React from "react"
+import * as React from "react";
+import { cn } from "@/lib/utils";
 
-import { cn } from "@/lib/utils"
+interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
+  backgroundImage?: string;
+}
 
-const Card = React.forwardRef<
-  HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement>
->(({ className, ...props }, ref) => (
-  <div
-    ref={ref}
-    className={cn(
-      "rounded-lg border bg-card text-card-foreground shadow-sm",
-      className
-    )}
-    style={{ width: "300px" , height: "150px"}}
-    {...props}
-  />
-))
-Card.displayName = "Card"
+const Card = React.forwardRef<HTMLDivElement, CardProps>(
+  ({ className, backgroundImage, ...props }, ref) => (
+    <div
+      ref={ref}
+      className={cn(
+        "rounded-lg border bg-card text-card-foreground shadow-sm",
+        className
+      )}
+      style={{
+        width: "300px",
+        height: "150px",
+        backgroundImage: backgroundImage ? `url(${backgroundImage})` : undefined,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        color: "white"
+
+      }}
+      {...props}
+    />
+  )
+);
+Card.displayName = "Card";
 
 const CardHeader = React.forwardRef<
   HTMLDivElement,
@@ -24,7 +34,7 @@ const CardHeader = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
-    className={cn("flex flex-col space-y-1.5 pl-6 pr-6 pt-8 pb-2", className)}
+    className={cn("flex flex-col space-y-1.5 pl-6 pr-6 pt-8", className)}
     {...props}
   />
 ))
@@ -37,7 +47,7 @@ const CardTitle = React.forwardRef<
   <h3
     ref={ref}
     className={cn(
-      "text-3xl font-semibold leading-none tracking-tight",
+      "text-5xl font-bold leading-none tracking-tight",
       className
     )}
     {...props}
@@ -71,7 +81,7 @@ const CardFooter = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
-    className={cn("flex items-center justify-start p-6 pt-8", className)}
+    className={cn("flex items-center justify-start p-6 pt-8 text-lg", className)}
     style={{ marginTop: "auto" }}
     {...props}
   />
